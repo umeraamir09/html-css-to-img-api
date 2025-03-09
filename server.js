@@ -18,7 +18,7 @@ app.post("/generate-image", async (req, res) => {
     if (!html) return res.status(400).json({ error: "HTML is required" });
 
     const browser = await puppeteer.launch({
-      executablePath: "/home/ubuntu/.cache/puppeteer/chrome/linux_arm-134.0.6998.35/chrome-linux64/chrome", // Use the installed Chrome
+      executablePath: "/usr/bin/chromium", // Use the installed Chrome
       headless: "new",
       args: [
         "--no-sandbox",
