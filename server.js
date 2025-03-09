@@ -6,6 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 app.use(express.json());
+const hostname = process.env.HOST || "0.0.0.0"
 
 // Serve static images from the /uploads folder
 app.use("/images", express.static(path.join(__dirname, "images")));
@@ -65,9 +66,9 @@ app.post("/generate-image", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+const PORT = process.env.PORT || 80;
+app.listen(PORT, hostname, () => {
+  console.log(`Server running on port ${hostname}:${PORT}`);
 
   // Ensure uploads folder exists
   if (!fs.existsSync(path.join(__dirname, "images"))) {
