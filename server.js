@@ -18,7 +18,15 @@ app.post("/generate-image", async (req, res) => {
     if (!html) return res.status(400).json({ error: "HTML is required" });
 
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      executablePath: "/home/ubuntu/.cache/puppeteer/chrome/linux_arm-134.0.6998.35/chrome-linux64/chrome", // Use the installed Chrome
+      headless: "new",
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-gpu",
+        "--disable-dev-shm-usage",
+        "--single-process",
+      ],
     });
     const page = await browser.newPage();
 
