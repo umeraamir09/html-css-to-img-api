@@ -74,7 +74,7 @@ app.post("/generate-image", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, hostname, () => {
   console.log(`Server running on port ${hostname}:${PORT}`);
 
