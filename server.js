@@ -69,7 +69,7 @@ app.post("/generate-image", async (req, res) => {
     });
 
     await browser.close();
-    const baseUrl = `${req.protocol}://${req.hostname}`
+    const baseUrl = "https://api.umroo.art"
     // Return the public URL of the image
     res.json({ imageUrl: `${baseUrl}/images/${filename}` });
 
