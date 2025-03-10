@@ -11,6 +11,11 @@ const hostname = process.env.HOST || "0.0.0.0"
 // Serve static images from the /uploads folder
 app.use("/images", express.static(path.join(__dirname, "images")));
 
+app.get("/test", async (req, res) => {
+  const baseUrl = `${req.protocol}://${req.hostname}/`
+  res.send(baseUrl)
+})
+
 app.post("/generate-image", async (req, res) => {
   try {
     const { html, css, width = 800, height = 600 } = req.body;
@@ -64,9 +69,9 @@ app.post("/generate-image", async (req, res) => {
     });
 
     await browser.close();
-
+    const baseUrl = `${req.protocol}://${req.hostname}`
     // Return the public URL of the image
-    res.json({ imageUrl: `/images/${filename}` });
+    res.json({ imageUrl: `${baseUrl}/images/${filename}` });
 
   } catch (error) {
     console.error("Error generating image:", error);
